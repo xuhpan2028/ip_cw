@@ -15,8 +15,10 @@ def add_score(player_name, new_score, dynamodb=None):
     scores = player['info']['score']
     highest_score = player['info']['highest']
 
+    scores = [str(x) for x in scores]
+
     scores.append(new_score)
-    highest_score = max(scores)
+    highest_score = str(max([int(x) for x in scores]))
 
     table.update_item(
         Key={
@@ -30,6 +32,7 @@ def add_score(player_name, new_score, dynamodb=None):
     )
 
     print("Score added for player:", player_name)
+
 
 
 if __name__ == '__main__':

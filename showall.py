@@ -1,10 +1,18 @@
 import boto3
 
-dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
-table = dynamodb.Table('game')
+def showall(dynamodb=None):
+    
+    if not dynamodb:
+        dynamodb = boto3.resource('dynamodb',region_name='us-east-1')
 
-response = table.scan()
-items = response['Items']
+    table = dynamodb.Table('game')
 
-for item in items:
-    print(item['PlayerName'], item['info'])
+    response = table.scan()
+    items = response['Items']
+
+    for item in items:
+        print(item['PlayerName'], item['info'])
+
+
+if __name__ == '__main__':
+    showall()
