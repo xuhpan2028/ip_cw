@@ -31,4 +31,5 @@ def add_player(player_name, dynamodb=None):
     return player_name
 
 if __name__ == '__main__':
-    add_player(dynamodb=None)
+    name = input("enter name: ")
+    add_player(name)
